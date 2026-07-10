@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#F3ECE3"/>
+  <rect x="80" y="100" width="240" height="160" rx="4" fill="#FFFDF8" stroke="#E9E2D8" stroke-width="1"/>
+  <path d="M200 130 L204 160 L234 164 L204 168 L200 198 L196 168 L166 164 L196 160 Z" fill="#D4AF37" opacity="0.2"/>
+  <text x="200" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#6B6B6B" opacity="0.6">Moment IV</text>
+  <line x1="100" y1="420" x2="300" y2="420" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
+</svg>

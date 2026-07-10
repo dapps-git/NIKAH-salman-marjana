@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" fill="#FFFDF8"/>
+  <path d="M100 150 Q200 100 300 150 Q250 250 200 280 Q150 250 100 150" stroke="#D4AF37" stroke-width="1" opacity="0.2" fill="#F3ECE3"/>
+  <circle cx="150" cy="200" r="20" fill="#D4AF37" opacity="0.1"/>
+  <circle cx="250" cy="200" r="20" fill="#D4AF37" opacity="0.1"/>
+  <text x="200" y="380" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#6B6B6B" opacity="0.6">Moment III</text>
+  <line x1="100" y1="420" x2="300" y2="420" stroke="#D4AF37" stroke-width="0.5" opacity="0.3"/>
+</svg>

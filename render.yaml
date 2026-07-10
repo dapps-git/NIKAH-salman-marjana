@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: nikah-invitation
+    runtime: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./out
