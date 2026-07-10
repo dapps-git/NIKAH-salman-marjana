@@ -45,7 +45,7 @@ export default function EventDetails() {
                 <p className="mt-4 whitespace-pre-line font-body text-base leading-relaxed text-text-secondary">
                   {EVENT.address}
                 </p>
-                <p className="mt-4 font-body text-xs text-gold-deep underline underline-offset-2">Tap to open in Maps →</p>
+
               </GlassCard>
             </a>
           </div>
