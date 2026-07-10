@@ -47,7 +47,7 @@ export const EVENT = {
   venue: "Hitech Regency",
   address:
     "Kappur, Kozhikkara, Kerala",
-  mapsUrl: "https://maps.app.goo.gl/Lp3RjHwGCzKo7ibb6",
+  mapsUrl: "https://maps.app.goo.gl/FCgDbjLuRSb61MCA9",
   mapsEmbedUrl:
     "https://maps.google.com/maps?q=Hitech%20Regency%20Kappur%20kozhikkara%20Kerala&output=embed",
 };

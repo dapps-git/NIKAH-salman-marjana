@@ -9,6 +9,18 @@ export default function Footer() {
         From Both Families
       </p>
       <div className="ornamental-line mx-auto mt-6 w-24" />
+      <p className="mt-8 font-body text-[0.65rem] tracking-[0.2em] text-text-secondary/50 uppercase">
+        Made with{" "}
+        <a
+          href="https://crevionads.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-gold transition-colors duration-300"
+        >
+          crevionads.com
+        </a>{" "}
+        🤎
+      </p>
     </footer>
   );
 }
