@@ -116,11 +116,14 @@ async function getEmbeddedFontFaces(): Promise<string> {
   return fontRules;
 }
 
-export async function downloadInvitationCard(): Promise<void> {
+/**
+ * Generates a PNG data URL of the invitation card, scaling it to desktop width and inlining fonts
+ */
+export async function generateInvitationPng(): Promise<string | null> {
   const element = document.getElementById("invitation-card");
   if (!element) {
     console.warn("Invitation card element not found");
-    return;
+    return null;
   }
 
   const { toPng } = await import("html-to-image");
@@ -178,14 +181,10 @@ export async function downloadInvitationCard(): Promise<void> {
         !(node instanceof HTMLElement && node.dataset.exportHide !== undefined),
     });
 
-    const link = document.createElement("a");
-    link.download = "nikah-invitation.png";
-    link.href = dataUrl;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    return dataUrl;
   } catch (error) {
-    console.error("Failed to download invitation card:", error);
+    console.error("Failed to generate invitation card image:", error);
+    return null;
   } finally {
     element.style.width    = savedWidth;
     element.style.maxWidth = savedMaxWidth;
@@ -195,4 +194,19 @@ export async function downloadInvitationCard(): Promise<void> {
     restoreVisibility();
     restoreStyles();
   }
+}
+
+/**
+ * Downloads the invitation card directly
+ */
+export async function downloadInvitationCard(): Promise<void> {
+  const dataUrl = await generateInvitationPng();
+  if (!dataUrl) return;
+
+  const link = document.createElement("a");
+  link.download = "nikah-invitation.png";
+  link.href = dataUrl;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
