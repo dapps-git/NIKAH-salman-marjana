@@ -59,14 +59,15 @@ export default function Hero() {
 
         <FadeIn delay={0.25} duration={1.2} scale>
           <div className="couple-name-stack mt-12 sm:mt-16">
-            <h1 className="couple-name couple-name-gold">
-              <span className="couple-name-initial">{COUPLE.bride.charAt(0)}</span>
-              {COUPLE.bride.slice(1)}
-            </h1>
-            <OrnamentalDivider className="couple-divider sm:my-8" />
+
             <h1 className="couple-name couple-name-gold">
               <span className="couple-name-initial">{COUPLE.groom.charAt(0)}</span>
               {COUPLE.groom.slice(1)}
+            </h1>
+            <OrnamentalDivider className="couple-divider sm:my-8" />
+            <h1 className="couple-name couple-name-gold">
+              <span className="couple-name-initial">{COUPLE.bride.charAt(0)}</span>
+              {COUPLE.bride.slice(1)}
             </h1>
           </div>
         </FadeIn>
