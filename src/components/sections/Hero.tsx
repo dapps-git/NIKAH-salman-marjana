@@ -15,18 +15,18 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100dvh] items-center justify-center luxury-section-primary px-4 py-10 sm:px-6 sm:py-16"
+      className="relative flex min-h-[100dvh] items-start justify-center luxury-section-primary px-0 py-0 sm:items-center sm:px-6 sm:py-16"
     >
       <GeometricPattern />
       <MosqueSilhouette />
 
       {/* Invitation card wrapper */}
-      <div className="relative z-10 mx-auto w-full max-w-2xl mt-16 sm:mt-24">
+      <div className="relative z-10 mx-auto w-full max-w-2xl mt-0 sm:mt-24">
 
         {/* ── Invitation Card ── */}
         <div
           id="invitation-card"
-          className="embossed-frame ornate-panel relative z-10 mx-auto w-full rounded-sm bg-ivory px-5 pt-24 pb-8 text-center shadow-[0_20px_60px_rgba(97,11,20,0.14)] backdrop-blur-sm sm:px-12 sm:pt-38 sm:pb-12"
+          className="embossed-frame ornate-panel relative z-10 mx-auto w-full rounded-none bg-ivory px-5 pt-24 pb-8 text-center shadow-[0_20px_60px_rgba(97,11,20,0.14)] backdrop-blur-sm sm:rounded-sm sm:px-12 sm:pt-38 sm:pb-12"
         >
           <GoldCornerBorders />
 

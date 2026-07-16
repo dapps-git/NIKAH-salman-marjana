@@ -63,57 +63,13 @@ function hideExportExcludedElements(element: HTMLElement): () => void {
   };
 }
 
+import { FONTS_CSS_TEMPLATE } from "./fonts-base64";
+
 /**
- * Dynamically scans document stylesheets, extracts all @font-face rules,
- * fetches the font files from the local server, and converts them to base64
- * data URIs so they render perfectly inside the sandboxed capture SVG canvas.
+ * Returns preloaded base64 font-face declarations to guarantee font style rendering on all devices (bypasses CORS)
  */
 async function getEmbeddedFontFaces(): Promise<string> {
-  let fontRules = "";
-  try {
-    for (const sheet of Array.from(document.styleSheets)) {
-      try {
-        const rules = Array.from(sheet.cssRules || sheet.rules || []);
-        for (const rule of rules) {
-          if (rule instanceof CSSFontFaceRule) {
-            let cssText = rule.cssText;
-            const matches = cssText.match(/url\((['"]?)([^'")]+)\1\)/g);
-            if (matches) {
-              for (const match of matches) {
-                const urlMatch = match.match(/url\((['"]?)([^'")]+)\1\)/);
-                if (urlMatch) {
-                  const fontUrl = urlMatch[2];
-                  if (!fontUrl.startsWith("data:")) {
-                    try {
-                      // Resolve local font relative URL to absolute URL on local dev server
-                      const absoluteUrl = new URL(fontUrl, sheet.href || document.baseURI).href;
-                      const response = await fetch(absoluteUrl);
-                      const blob = await response.blob();
-                      const base64 = await new Promise<string>((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.onloadend = () => resolve(reader.result as string);
-                        reader.onerror = reject;
-                        reader.readAsDataURL(blob);
-                      });
-                      cssText = cssText.replace(match, `url("${base64}")`);
-                    } catch (err) {
-                      console.warn("Failed to inline font locally:", fontUrl, err);
-                    }
-                  }
-                }
-              }
-            }
-            fontRules += cssText + "\n";
-          }
-        }
-      } catch (e) {
-        // Skip cross-origin stylesheet errors (Next.js CSS is local, so this passes)
-      }
-    }
-  } catch (e) {
-    console.error("Error embedding font-faces:", e);
-  }
-  return fontRules;
+  return FONTS_CSS_TEMPLATE;
 }
 
 function copyCssVariables(source: HTMLElement, target: HTMLElement) {
@@ -143,6 +99,27 @@ function copyCssVariables(source: HTMLElement, target: HTMLElement) {
   }
 }
 
+/**
+ * Synchronously grabs the base64 data URL from a pre-loaded img element using an offscreen canvas.
+ * This is 100% offline-compatible, same-origin safe, and does not require network fetches.
+ */
+function getBase64FromImageElement(img: HTMLImageElement): string | null {
+  try {
+    const canvas = document.createElement("canvas");
+    canvas.width = img.naturalWidth || img.width;
+    canvas.height = img.naturalHeight || img.height;
+    if (canvas.width === 0 || canvas.height === 0) return null;
+    
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return null;
+    ctx.drawImage(img, 0, 0);
+    return canvas.toDataURL("image/png");
+  } catch (err) {
+    console.warn("Failed canvas serialization for image:", img.src, err);
+    return null;
+  }
+}
+
 async function inlineAllImages(element: HTMLElement): Promise<() => void> {
   const originalSrcs = new Map<HTMLImageElement, string>();
   const images = Array.from(element.querySelectorAll("img"));
@@ -150,20 +127,29 @@ async function inlineAllImages(element: HTMLElement): Promise<() => void> {
   for (const img of images) {
     const src = img.getAttribute("src");
     if (src && !src.startsWith("data:")) {
-      try {
-        const absoluteUrl = new URL(src, window.location.origin).href;
-        const response = await fetch(absoluteUrl);
-        const blob = await response.blob();
-        const base64 = await new Promise<string>((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result as string);
-          reader.onerror = reject;
-          reader.readAsDataURL(blob);
-        });
+      // First try synchronous same-origin canvas extraction
+      let base64 = getBase64FromImageElement(img);
+
+      // If canvas serialization failed (e.g. image not fully loaded yet), fallback to network fetch
+      if (!base64) {
+        try {
+          const absoluteUrl = new URL(src, window.location.origin).href;
+          const response = await fetch(absoluteUrl);
+          const blob = await response.blob();
+          base64 = await new Promise<string>((resolve, reject) => {
+            const windowReader = new FileReader();
+            windowReader.onloadend = () => resolve(windowReader.result as string);
+            windowReader.onerror = reject;
+            windowReader.readAsDataURL(blob);
+          });
+        } catch (err) {
+          console.warn("Image fallback fetch failed:", src, err);
+        }
+      }
+
+      if (base64) {
         originalSrcs.set(img, src);
         img.setAttribute("src", base64);
-      } catch (err) {
-        console.warn("Failed to inline image:", src, err);
       }
     }
   }
