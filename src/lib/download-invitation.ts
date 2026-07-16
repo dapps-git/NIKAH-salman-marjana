@@ -200,6 +200,46 @@ export async function generateInvitationPng(): Promise<string | null> {
   element.style.width    = `${EXPORT_WIDTH}px`;
   element.style.maxWidth = "none";
 
+  // ── Temporarily shrink floral arch for download layout ──
+  const archDiv = element.querySelector<HTMLElement>(".pointer-events-none.absolute");
+  let savedArchWidth = "";
+  let savedArchLeft = "";
+  let savedArchRight = "";
+  let savedArchTop = "";
+
+  if (archDiv) {
+    savedArchWidth = archDiv.style.width;
+    savedArchLeft  = archDiv.style.left;
+    savedArchRight = archDiv.style.right;
+    savedArchTop   = archDiv.style.top;
+    archDiv.style.width  = "72%";
+    archDiv.style.left   = "14%";
+    archDiv.style.right  = "14%";
+    archDiv.style.top    = "0";
+  }
+
+  // ── Increase top padding so text sits below the scaled arch ──
+  const savedPaddingTop = element.style.paddingTop;
+  element.style.paddingTop = "210px";
+
+  // ── Explicitly set font-family on text elements to guarantee correct rendering ──
+  const coupleNames = element.querySelectorAll<HTMLElement>(".couple-name");
+  const savedCoupleNameFonts: string[] = [];
+  coupleNames.forEach((el, i) => {
+    savedCoupleNameFonts[i] = el.style.fontFamily;
+    el.style.fontFamily = "'Great Vibes', cursive";
+    el.style.fontSize = "3.6rem";
+  });
+
+  const bodyTexts = element.querySelectorAll<HTMLElement>(
+    ".font-heading, .font-body, h2, h3, p, span:not(.couple-name-initial)"
+  );
+  const savedBodyFonts: string[] = [];
+  bodyTexts.forEach((el, i) => {
+    savedBodyFonts[i] = el.style.fontFamily;
+    el.style.fontFamily = "'Cormorant Garamond', Georgia, serif";
+  });
+
   // Double requestAnimationFrame to ensure Next.js/Tailwind styles layout updates
   await new Promise<void>((r) => requestAnimationFrame(() => requestAnimationFrame(() => r())));
   await new Promise((r) => setTimeout(r, 150));
@@ -240,10 +280,30 @@ export async function generateInvitationPng(): Promise<string | null> {
     element.style.maxWidth = savedMaxWidth;
     element.style.position = savedPosition;
     element.style.left     = savedLeft;
+    element.style.paddingTop = savedPaddingTop;
     element.removeChild(styleTag);
     restoreVisibility();
     restoreStyles();
     restoreImages();
+
+    // Restore arch styles
+    if (archDiv) {
+      archDiv.style.width  = savedArchWidth;
+      archDiv.style.left   = savedArchLeft;
+      archDiv.style.right  = savedArchRight;
+      archDiv.style.top    = savedArchTop;
+    }
+
+    // Restore couple name fonts
+    coupleNames.forEach((el, i) => {
+      el.style.fontFamily = savedCoupleNameFonts[i];
+      el.style.fontSize = "";
+    });
+
+    // Restore body text fonts
+    bodyTexts.forEach((el, i) => {
+      el.style.fontFamily = savedBodyFonts[i];
+    });
   }
 }
 
