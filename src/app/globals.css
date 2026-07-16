@@ -347,7 +347,7 @@ body {
 .opening-bismillah { margin: 0.25rem 0 0.5rem; }
 .opening-bismillah-img {
   height: auto;
-  width: min(22rem, 80vw);
+  width: min(12rem, 55vw);
   filter: drop-shadow(0 6px 18px rgba(44, 36, 27, 0.1));
 }
 
