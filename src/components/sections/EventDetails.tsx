@@ -69,7 +69,7 @@ export default function EventDetails() {
                     {EVENT.address}
                   </p>
                   <p className="mt-2 font-body text-xs tracking-wide" style={{ color: "rgba(97,11,20,0.5)" }}>
-                    Tap to open in Maps ↗
+                    Tap to open in Maps
                   </p>
                 </div>
               </div>

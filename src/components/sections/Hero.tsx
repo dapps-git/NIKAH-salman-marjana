@@ -6,7 +6,6 @@ import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 import {
   GeometricPattern,
   GoldCornerBorders,
-  MosqueSilhouette,
 } from "@/components/ui/DecorativeElements";
 import ScrollIndicator from "@/components/ui/ScrollIndicator";
 import { COUPLE, EVENT, HERO, OPENING } from "@/lib/constants";
@@ -18,7 +17,6 @@ export default function Hero() {
       className="relative flex min-h-[100dvh] items-start justify-center luxury-section-primary px-0 py-0 overflow-x-hidden w-full sm:items-center sm:px-6 sm:py-16"
     >
       <GeometricPattern />
-      <MosqueSilhouette />
 
       {/* Invitation card wrapper */}
       <div className="relative z-10 mx-auto w-full max-w-2xl mt-0 sm:mt-24">

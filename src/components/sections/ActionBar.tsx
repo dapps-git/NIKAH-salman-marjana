@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Download, MapPin, MessageCircle } from "lucide-react";
+import { MapPin, MessageCircle } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { CONTACTS, EVENT } from "@/lib/constants";
@@ -16,25 +16,9 @@ type ActionItem = {
   icon: LucideIcon;
   href?: string;
   external?: boolean;
-  isDownload?: boolean;
 };
 
 export default function ActionBar() {
-  const [isDownloading, setIsDownloading] = useState(false);
-
-  const handleDownload = async () => {
-    if (isDownloading) return;
-    setIsDownloading(true);
-    try {
-      const { downloadInvitationCard } = await import("@/lib/download-invitation");
-      await downloadInvitationCard();
-    } catch (error) {
-      console.error("Failed to download invitation card:", error);
-    } finally {
-      setIsDownloading(false);
-    }
-  };
-
   const actionItems = useMemo<ActionItem[]>(
     () => [
       {
@@ -51,12 +35,6 @@ export default function ActionBar() {
         icon: MessageCircle,
         external: true,
       },
-      {
-        title: "Download Invitation",
-        subtitle: "Save as image",
-        icon: Download,
-        isDownload: true,
-      },
     ],
     [],
   );
@@ -70,8 +48,8 @@ export default function ActionBar() {
 
         <FadeIn delay={0.2} duration={1.1}>
           <div className="embossed-frame ornate-panel rounded-sm bg-champagne/40 px-5 py-6 sm:px-8 sm:py-8">
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {actionItems.map(({ title, subtitle, href, icon: Icon, external, isDownload }) => {
+            <div className="grid gap-4 sm:grid-cols-2">
+              {actionItems.map(({ title, subtitle, href, icon: Icon, external }) => {
                 const content = (
                   <>
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full border border-gold/40 bg-ivory shadow-[0_4px_14px_rgba(184,134,11,0.1)] transition-all duration-500 group-hover:scale-105 group-hover:border-gold group-hover:shadow-[0_6px_18px_rgba(184,134,11,0.18)]">
@@ -81,26 +59,6 @@ export default function ActionBar() {
                     <p className="mt-1 font-body text-sm text-text-secondary">{subtitle}</p>
                   </>
                 );
-
-                if (isDownload) {
-                  return (
-                    <button
-                      key={title}
-                      type="button"
-                      onClick={handleDownload}
-                      disabled={isDownloading}
-                      className={`w-full relative ${cardClassName} ${isDownloading ? "cursor-wait opacity-70" : ""}`}
-                    >
-                      {isDownloading && (
-                        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-ivory/95 rounded-sm">
-                          <div className="h-6 w-6 animate-spin rounded-full border-2 border-gold border-t-transparent" />
-                          <span className="mt-2 font-body text-xs text-gold-deep font-medium">Preparing download...</span>
-                        </div>
-                      )}
-                      {content}
-                    </button>
-                  );
-                }
 
                 return (
                   <a
