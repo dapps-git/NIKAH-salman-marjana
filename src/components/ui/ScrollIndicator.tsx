@@ -29,9 +29,6 @@ export default function ScrollIndicator({ exportHide = false }: ScrollIndicatorP
       }}
       aria-label="Scroll to explore"
     >
-      <span className="font-body text-xs tracking-[0.16em] uppercase sm:tracking-[0.25em]">
-        Scroll to Explore
-      </span>
       <ChevronDown className="h-5 w-5 text-gold" strokeWidth={1.5} />
     </motion.a>
   );

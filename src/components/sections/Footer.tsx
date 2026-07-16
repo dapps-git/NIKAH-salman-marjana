@@ -14,11 +14,9 @@ export default function Footer() {
 
       {/* Bouquet icon — romantic closing symbol */}
       <div className="mx-auto mt-8 flex justify-center">
-        <Image
-          src="/decor/bouquet-icon.png"
+        <img
+          src="/decor/bouquet-icon.png?v=2"
           alt="Flower bouquet"
-          width={100}
-          height={120}
           className="h-auto w-20 sm:w-24"
           style={{ mixBlendMode: "multiply" }}
         />

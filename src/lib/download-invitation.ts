@@ -116,6 +116,65 @@ async function getEmbeddedFontFaces(): Promise<string> {
   return fontRules;
 }
 
+function copyCssVariables(source: HTMLElement, target: HTMLElement) {
+  const computed = getComputedStyle(source);
+  const vars = [
+    "--font-cormorant",
+    "--font-calligraphy",
+    "--font-scheherazade",
+    "--font-inter",
+    "--off-white",
+    "--ivory",
+    "--gold",
+    "--gold-soft",
+    "--gold-deep",
+    "--champagne",
+    "--pearl",
+    "--linen",
+    "--text-primary",
+    "--text-secondary",
+    "--border"
+  ];
+  for (const v of vars) {
+    const val = computed.getPropertyValue(v);
+    if (val) {
+      target.style.setProperty(v, val);
+    }
+  }
+}
+
+async function inlineAllImages(element: HTMLElement): Promise<() => void> {
+  const originalSrcs = new Map<HTMLImageElement, string>();
+  const images = Array.from(element.querySelectorAll("img"));
+
+  for (const img of images) {
+    const src = img.getAttribute("src");
+    if (src && !src.startsWith("data:")) {
+      try {
+        const absoluteUrl = new URL(src, window.location.origin).href;
+        const response = await fetch(absoluteUrl);
+        const blob = await response.blob();
+        const base64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result as string);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
+        originalSrcs.set(img, src);
+        img.setAttribute("src", base64);
+      } catch (err) {
+        console.warn("Failed to inline image:", src, err);
+      }
+    }
+  }
+
+  return () => {
+    for (const [img, src] of originalSrcs.entries()) {
+      img.setAttribute("src", src);
+    }
+  };
+}
+
 /**
  * Generates a PNG data URL of the invitation card, scaling it to desktop width and inlining fonts
  */
@@ -128,6 +187,9 @@ export async function generateInvitationPng(): Promise<string | null> {
 
   const { toPng } = await import("html-to-image");
 
+  // Copy font variables from root html element so they are available in sandboxed capture
+  copyCssVariables(document.documentElement, element);
+
   // Embed active local fonts as base64 to bypass browser SVG sandboxing
   const embeddedFontsCss = await getEmbeddedFontFaces();
 
@@ -135,6 +197,8 @@ export async function generateInvitationPng(): Promise<string | null> {
   styleTag.textContent = embeddedFontsCss;
   element.appendChild(styleTag);
 
+  // Inline all image elements inside the card as base64 to prevent sandbox image blocking
+  const restoreImages = await inlineAllImages(element);
   const restoreStyles = prepareElementForCapture(element);
   const restoreVisibility = hideExportExcludedElements(element);
 
@@ -156,7 +220,7 @@ export async function generateInvitationPng(): Promise<string | null> {
 
   try {
     await document.fonts.ready;
-    await new Promise((r) => setTimeout(r, 200));
+    await new Promise((r) => setTimeout(r, 250));
 
     const height = element.scrollHeight;
     const dpr    = Math.min(window.devicePixelRatio || 1, 3);
@@ -193,6 +257,7 @@ export async function generateInvitationPng(): Promise<string | null> {
     element.removeChild(styleTag);
     restoreVisibility();
     restoreStyles();
+    restoreImages();
   }
 }
 

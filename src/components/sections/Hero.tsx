@@ -20,36 +20,33 @@ export default function Hero() {
       <GeometricPattern />
       <MosqueSilhouette />
 
-      {/* Invitation card wrapper — extra top padding to make room for the floral arch */}
+      {/* Invitation card wrapper */}
       <div className="relative z-10 mx-auto w-full max-w-2xl mt-16 sm:mt-24">
-
-        {/* ── Floral Arch — sits above the card, overlapping from the top ── */}
-        <div
-          className="pointer-events-none absolute left-0 right-0 z-20"
-          style={{ top: "-16%", width: "100%" }}
-          aria-hidden
-        >
-          <Image
-            src="/decor/floral-arch.png"
-            alt="Floral decoration"
-            width={1024}
-            height={600}
-            priority
-            className="mx-auto w-full h-auto object-contain"
-            style={{ mixBlendMode: "multiply" }}
-          />
-        </div>
 
         {/* ── Invitation Card ── */}
         <div
           id="invitation-card"
-          className="embossed-frame ornate-panel relative z-10 mx-auto w-full rounded-sm bg-ivory px-5 pt-28 pb-8 text-center shadow-[0_20px_60px_rgba(97,11,20,0.14)] backdrop-blur-sm sm:px-12 sm:pt-36 sm:pb-12"
+          className="embossed-frame ornate-panel relative z-10 mx-auto w-full rounded-sm bg-ivory px-5 pt-24 pb-8 text-center shadow-[0_20px_60px_rgba(97,11,20,0.14)] backdrop-blur-sm sm:px-12 sm:pt-38 sm:pb-12"
         >
           <GoldCornerBorders />
 
+          {/* ── Floral Arch — sits inside the card, overlapping from the top ── */}
+          <div
+            className="pointer-events-none absolute left-0 right-0 z-20"
+            style={{ top: "-11%", width: "100%" }}
+            aria-hidden
+          >
+            <img
+              src="/decor/floral-arch.png?v=2"
+              alt="Floral decoration"
+              className="mx-auto w-full h-auto object-contain"
+              style={{ mixBlendMode: "multiply" }}
+            />
+          </div>
+
           <FadeIn duration={1.15}>
             <div className="mx-auto flex max-w-3xl flex-col items-center">
-              <div className="bismillah-heading relative mx-auto w-[min(100%,11rem)] sm:w-[14rem]">
+              <div className="bismillah-heading relative mx-auto w-[min(100%,7.5rem)] sm:w-[13rem]">
                 <Image
                   src={OPENING.bismillah.src}
                   alt={OPENING.bismillah.alt}
@@ -57,7 +54,7 @@ export default function Hero() {
                   height={314}
                   priority
                   className="mx-auto h-auto w-full object-contain"
-                  sizes="(max-width: 640px) 11rem, 14rem"
+                  sizes="(max-width: 640px) 7.5rem, 13rem"
                 />
               </div>
               <div className="ornamental-line mt-5 w-20 sm:mt-6 sm:w-24" />
@@ -65,8 +62,8 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.2} duration={1.2} scale>
-            <div className="couple-name-stack mt-8 sm:mt-10">
-              <p className="font-body text-xs tracking-[0.18em] uppercase text-text-secondary sm:text-xs sm:tracking-[0.28em] mb-4">
+            <div className="couple-name-stack mt-8 sm:mt-10 px-4">
+              <p className="font-body text-[0.62rem] tracking-[0.12em] uppercase text-text-secondary sm:text-xs sm:tracking-[0.24em] mb-4">
                 {HERO.subtitle}
               </p>
 

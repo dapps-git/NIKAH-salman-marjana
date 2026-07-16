@@ -71,7 +71,7 @@ export default function OpeningScreen({ onOpen }: OpeningScreenProps) {
         >
           <span className="opening-tap-hand" aria-hidden="true">
             <img
-              src="/decor/bouquet-icon.png"
+              src="/decor/bouquet-icon.png?v=2"
               alt=""
               className="opening-tap-icon"
               style={{ mixBlendMode: "multiply", width: "2rem", height: "2.4rem", objectFit: "contain" }}
