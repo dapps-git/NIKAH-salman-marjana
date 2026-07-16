@@ -33,7 +33,7 @@ export default function Hero() {
           {/* ── Floral Arch — sits inside the card, overlapping from the top ── */}
           <div
             className="pointer-events-none absolute left-0 right-0 z-20"
-            style={{ top: "0", width: "100%" }}
+            style={{ top: "-11%", width: "100%" }}
             aria-hidden
           >
             <img
