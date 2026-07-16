@@ -15,7 +15,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100dvh] items-start justify-center luxury-section-primary px-0 py-0 sm:items-center sm:px-6 sm:py-16"
+      className="relative flex min-h-[100dvh] items-start justify-center luxury-section-primary px-0 py-0 overflow-x-hidden w-full sm:items-center sm:px-6 sm:py-16"
     >
       <GeometricPattern />
       <MosqueSilhouette />
@@ -33,12 +33,13 @@ export default function Hero() {
           {/* ── Floral Arch — sits inside the card, overlapping from the top ── */}
           <div
             className="pointer-events-none absolute left-0 right-0 z-20"
-            style={{ top: "-11%", width: "100%" }}
+            style={{ top: "0", width: "100%" }}
             aria-hidden
           >
             <img
               src="/decor/floral-arch.png?v=2"
               alt="Floral decoration"
+              crossOrigin="anonymous"
               className="mx-auto w-full h-auto object-contain"
               style={{ mixBlendMode: "multiply" }}
             />
@@ -47,14 +48,11 @@ export default function Hero() {
           <FadeIn duration={1.15}>
             <div className="mx-auto flex max-w-3xl flex-col items-center">
               <div className="bismillah-heading relative mx-auto w-[min(100%,7.5rem)] sm:w-[13rem]">
-                <Image
+                <img
                   src={OPENING.bismillah.src}
                   alt={OPENING.bismillah.alt}
-                  width={948}
-                  height={314}
-                  priority
+                  crossOrigin="anonymous"
                   className="mx-auto h-auto w-full object-contain"
-                  sizes="(max-width: 640px) 7.5rem, 13rem"
                 />
               </div>
               <div className="ornamental-line mt-5 w-20 sm:mt-6 sm:w-24" />

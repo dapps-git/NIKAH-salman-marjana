@@ -70,9 +70,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${inter.variable} ${scheherazade.variable} ${greatVibes.variable}`}
+      className={`${cormorant.variable} ${inter.variable} ${scheherazade.variable} ${greatVibes.variable} overflow-x-hidden max-w-full w-full`}
     >
-      <body className="antialiased">{children}</body>
+      <body className="antialiased overflow-x-hidden max-w-full w-full relative">{children}</body>
     </html>
   );
 }

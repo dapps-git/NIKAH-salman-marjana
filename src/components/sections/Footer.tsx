@@ -17,6 +17,7 @@ export default function Footer() {
         <img
           src="/decor/bouquet-icon.png?v=2"
           alt="Flower bouquet"
+          crossOrigin="anonymous"
           className="h-auto w-20 sm:w-24"
           style={{ mixBlendMode: "multiply" }}
         />
