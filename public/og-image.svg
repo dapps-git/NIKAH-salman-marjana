@@ -3,8 +3,8 @@
   <rect x="80" y="60" width="1040" height="510" rx="4" stroke="#E8D5A3" stroke-width="1" fill="none" opacity="0.5"/>
   <line x1="200" y1="120" x2="1000" y2="120" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
   <line x1="200" y1="510" x2="1000" y2="510" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
-  <text x="600" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#2D2D2D">Safa &amp; Gouse</text>
-  <text x="600" y="350" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#D4AF37" letter-spacing="6">NIKAH INVITATION</text>
-  <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#6B6B6B">Sunday, 19 July 2026</text>
+  <text x="600" y="280" text-anchor="middle" font-family="Georgia, serif" font-size="56" fill="#610B14">Sahana &amp; Harshad</text>
+  <text x="600" y="350" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#B8860B" letter-spacing="6">NIKAH INVITATION</text>
+  <text x="600" y="420" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#6B6B6B">Monday, 26 October 2026</text>
   <circle cx="600" cy="470" r="4" fill="#E8D5A3"/>
 </svg>

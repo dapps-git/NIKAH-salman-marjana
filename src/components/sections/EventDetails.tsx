@@ -36,13 +36,13 @@ export default function EventDetails() {
               </div>
               <div className="text-left">
                 <p className="font-body text-[0.65rem] tracking-[0.2em] uppercase" style={{ color: "rgba(97,11,20,0.55)" }}>
-                  Nikah Ceremony
+                  Time
                 </p>
                 <p className="mt-1 font-heading text-xl font-semibold" style={{ color: "#610B14" }}>
                   {EVENT.nikahTime}
                 </p>
                 <p className="mt-0.5 font-body text-sm" style={{ color: "rgba(97,11,20,0.6)" }}>
-                  Lunch & Reception at {EVENT.lunchTime}
+                  Ceremony starts at 11:00 AM followed by Reception
                 </p>
               </div>
             </div>

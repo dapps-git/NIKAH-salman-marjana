@@ -2,7 +2,7 @@
 
 import QRCode from "react-qr-code";
 import Image from "next/image";
-import { ExternalLink, MapPin } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import FadeIn from "@/components/ui/FadeIn";
 import GoldButton from "@/components/ui/GoldButton";
 import SectionHeading from "@/components/ui/SectionHeading";

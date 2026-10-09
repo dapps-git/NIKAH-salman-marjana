@@ -8,7 +8,6 @@ import Invitation from "@/components/sections/Invitation";
 import EventDetails from "@/components/sections/EventDetails";
 import Location from "@/components/sections/Location";
 import Closing from "@/components/sections/Closing";
-import ActionBar from "@/components/sections/ActionBar";
 import Footer from "@/components/sections/Footer";
 import FloatingPetals from "@/components/ui/FloatingPetals";
 import LocationJump from "@/components/ui/LocationJump";
@@ -27,7 +26,6 @@ export default function Home() {
         <EventDetails />
         <Location />
         <Closing />
-        <ActionBar />
         <Footer />
         <FloatingPetals isOpened={isOpened} />
       </main>

@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import FadeIn from "@/components/ui/FadeIn";
 import GlassCard from "@/components/ui/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading";
-import { EVENT } from "@/lib/constants";
+import { COUPLE, EVENT } from "@/lib/constants";
 
 interface TimeLeft {
   days: number;
@@ -72,12 +72,13 @@ export default function Countdown() {
           <SectionHeading title="Countdown" subtitle="Until our blessed day" />
         </FadeIn>
 
+        {/* ── Couple Illustration ── */}
         <FadeIn delay={0.15} duration={1}>
           <div className="mx-auto mb-10 max-w-[280px] overflow-hidden rounded-sm border border-gold/30 bg-ivory p-3 shadow-md ornate-panel sm:max-w-xs">
             <div className="relative aspect-[3/4] w-full overflow-hidden rounded-sm">
               <Image
-                src="/gallery/couple.png"
-                alt="Salman & Marjana"
+                src="/gallery/couple.png?v=3"
+                alt={COUPLE.shortName}
                 fill
                 className="object-cover"
                 sizes="(max-width: 640px) 280px, 320px"

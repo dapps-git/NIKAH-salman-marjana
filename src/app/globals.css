@@ -421,9 +421,16 @@ body {
   margin-top: 1rem;
   background: none;
   border: none;
+  outline: none;
   padding: 0.5rem;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+.opening-tap-btn:focus,
+.opening-tap-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .opening-tap-hand {

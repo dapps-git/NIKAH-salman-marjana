@@ -15,15 +15,19 @@ export default function OpeningScreen({ onOpen }: OpeningScreenProps) {
   const handleOpen = () => {
     if (tapped) return;
     setTapped(true);
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new Event("nikah-start-audio"));
+    }
     if (onOpen) onOpen();
-    setTimeout(() => setGone(true), 1050);
+    setTimeout(() => setGone(true), 1000);
   };
 
   if (gone) return null;
 
   return (
     <div
-      className={`opening-root${tapped ? " opening-root--open" : ""}`}
+      onClick={handleOpen}
+      className={`opening-root select-none cursor-pointer${tapped ? " opening-root--open pointer-events-none" : ""}`}
       aria-modal="true"
       role="dialog"
       aria-label="Wedding Invitation Cover"
@@ -43,33 +47,36 @@ export default function OpeningScreen({ onOpen }: OpeningScreenProps) {
           width={360}
           height={120}
           priority
-          className="opening-bismillah-img"
+          className="opening-bismillah-img pointer-events-none"
         />
 
         {/* Ornamental line */}
-        <div className="opening-ornament-line" />
+        <div className="opening-ornament-line pointer-events-none" />
 
-        {/* S & M Logo */}
+        {/* S & H Logo */}
         <Image
           src={LOGO.src}
           alt={LOGO.alt}
           width={320}
           height={297}
           priority
-          className="opening-logo-img"
+          className="opening-logo-img pointer-events-none"
         />
 
         {/* Ornamental line */}
-        <div className="opening-ornament-line" />
+        <div className="opening-ornament-line pointer-events-none" />
 
         {/* Tap button */}
         <button
           type="button"
-          onClick={handleOpen}
-          className="opening-tap-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleOpen();
+          }}
+          className="opening-tap-btn focus:outline-none focus:ring-0 active:scale-95"
           aria-label="Open invitation"
         >
-          <span className="opening-tap-hand" aria-hidden="true">
+          <span className="opening-tap-hand pointer-events-none" aria-hidden="true">
             <img
               src="/decor/bouquet-icon.png?v=2"
               alt=""
@@ -77,7 +84,7 @@ export default function OpeningScreen({ onOpen }: OpeningScreenProps) {
               style={{ mixBlendMode: "multiply", width: "2rem", height: "2.4rem", objectFit: "contain" }}
             />
           </span>
-          <span className="opening-tap-label">Open Invitation</span>
+          <span className="opening-tap-label pointer-events-none">Open Invitation</span>
         </button>
 
       </div>

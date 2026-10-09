@@ -1,8 +1,12 @@
 export const COUPLE = {
-  groom: "Salmanul Faris",
-  bride: "Marjana Yasmin",
-
-  shortName: "Salman & Marjana",
+  groom: "Harshad",
+  groomParents: "S/o Abdul Hameed & Jameela",
+  groomResidence: "Kaniyeri (H), Theyyala",
+  bride: "Sahana",
+  brideParents: "D/o Ahamed kutty ( Cp Ippu ) & Rukhiya",
+  brideResidence: "Cherapolikkal (H), Kadungathukundu, Kalpakanchery",
+  shortName: "Sahana & Harshad",
+  monogram: "S & H",
 };
 
 export const OPENING = {
@@ -18,8 +22,8 @@ export const CREST = {
 };
 
 export const LOGO = {
-  src: "/logo/sg.svg",
-  alt: "S & M",
+  src: "/logo/sh.svg",
+  alt: "S & H",
 };
 
 export const HERO = {
@@ -40,22 +44,23 @@ export const QURAN_VERSE = {
 export const CLOSING_MESSAGE = "Your presence and duas will make our day truly special.";
 
 export const EVENT = {
-  date: "Thursday, 6 August 2026",
-  dateShort: "Thursday 6 August 2026",
-  nikahTime: "11:00 AM",
-  lunchTime: "12:30 PM",
-  countdownTarget: "2026-08-06T11:00:00",
-  venue: "Nalanda Convention Centre",
+  date: "Monday, 26 October 2026",
+  dateShort: "Monday 26 Oct 2026",
+  nikahTime: "11:00 AM – 3:00 PM",
+  ceremonyTime: "11:00 AM",
+  receptionTime: "11:00 AM – 3:00 PM",
+  countdownTarget: "2026-10-26T11:00:00",
+  venue: "Emerald Palace",
   address:
-    "Nalanda Convention Centre, Malabar Sports Park Rd, Paradiyur, Kerala 679309, India",
-  mapsUrl: "https://maps.app.goo.gl/Q9gD5bCTZLHn3T717",
+    "Kurukkol Kunnu, Tirur - Vailathur - Puthanathani Rd, Kalpakanchery, Kerala",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Emerald+Palace+Kurukkol+Kunnu+Kalpakanchery",
   mapsEmbedUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3734.257791289152!2d76.1771162!3d10.8944584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba7c926e1a53789%3A0x27e60c7e4375b3ae!2sNalanda%20Convention%20Centre!5e1!3m2!1sen!2sin!4v1784094358965!5m2!1sen!2sin"
+    "https://maps.google.com/maps?q=Emerald+Palace+Kurukkol+Kunnu+Kalpakanchery&t=&z=15&ie=UTF8&iwloc=&output=embed",
 };
 
 export const TIMELINE = [
   { time: "11:00 AM", title: "Nikah Ceremony" },
-  { time: "12:30 PM", title: "Lunch & Reception" },
+  { time: "12:00 PM", title: "Feast & Reception (Until 3:00 PM)" },
 ];
 
 export const CONTACTS = {
@@ -65,18 +70,18 @@ export const CONTACTS = {
 };
 
 export const LOCATION = {
-  qrCaption: "Scan to navigate directly to the venue.",
+  qrCaption: "Scan to navigate directly to Emerald Palace.",
   mapsButton: "Open in Google Maps",
 };
 
 export const CALENDAR = {
-  title: "Nikah — Salman & Marjana",
+  title: "Nikah — Sahana & Harshad",
   description:
-    "You are invited to witness and celebrate the blessed Nikah of Salmanul Faris & Marjana Yasmin.",
+    "You are invited to witness and celebrate the blessed Nikah of Sahana & Harshad at Emerald Palace, Kalpakanchery.",
   location:
-    "Nalanda Convention Centre, Malabar Sports Park Rd, Paradiyur, Kerala 679309, India",
-  start: "20260806T110000",
-  end: "20260806T140000",
+    "Emerald Palace, Kurukkol Kunnu, Tirur - Vailathur - Puthanathani Rd, Kalpakanchery, Kerala",
+  start: "20261026T110000",
+  end: "20261026T150000",
   timezone: "Asia/Kolkata",
 };
 

@@ -35,23 +35,20 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
   ),
   title: `${COUPLE.shortName} — Nikah Invitation`,
-  description:
-    "You are cordially invited to celebrate the Nikah of Salwa Nusreen & Muhammed Sibin on Wednesday, 29 July 2026.",
+  description: `You are cordially invited to celebrate the Nikah of ${COUPLE.shortName} on Monday, 26 October 2026 at Emerald Palace, Kalpakanchery.`,
   icons: {
     icon: "/favicon.svg",
   },
   openGraph: {
     title: `Nikah Invitation — ${COUPLE.shortName}`,
-    description:
-      "Join us in celebrating the Nikah of Salwa Nusreen & Muhammed Sibin on Wednesday, 29 July 2026.",
+    description: `Join us in celebrating the Nikah of ${COUPLE.shortName} on Monday, 26 October 2026 at Emerald Palace, Kalpakanchery.`,
     images: ["/og-image.svg"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: `Nikah Invitation — ${COUPLE.shortName}`,
-    description:
-      "Join us in celebrating the Nikah of Salwa Nusreen & Muhammed Sibin on Wednesday, 29 July 2026.",
+    description: `Join us in celebrating the Nikah of ${COUPLE.shortName} on Monday, 26 October 2026 at Emerald Palace, Kalpakanchery.`,
     images: ["/og-image.svg"],
   },
 };

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import FadeIn from "@/components/ui/FadeIn";
 import OrnamentalDivider from "@/components/ui/OrnamentalDivider";
 import {
@@ -63,15 +62,33 @@ export default function Hero() {
                 {HERO.subtitle}
               </p>
 
-              <h1 className="couple-name couple-name-gold">
-                <span className="couple-name-initial">{COUPLE.groom.charAt(0)}</span>
-                {COUPLE.groom.slice(1)}
-              </h1>
-              <OrnamentalDivider className="couple-divider my-4 sm:my-6" />
-              <h1 className="couple-name couple-name-gold">
-                <span className="couple-name-initial">{COUPLE.bride.charAt(0)}</span>
-                {COUPLE.bride.slice(1)}
-              </h1>
+              <div>
+                <h1 className="couple-name couple-name-gold">
+                  <span className="couple-name-initial">{COUPLE.bride.charAt(0)}</span>
+                  {COUPLE.bride.slice(1)}
+                </h1>
+                <p className="font-body text-xs text-text-primary/85 sm:text-sm mt-1">
+                  {COUPLE.brideParents}
+                </p>
+                <p className="font-body text-[0.72rem] text-text-secondary sm:text-xs">
+                  {COUPLE.brideResidence}
+                </p>
+              </div>
+
+              <OrnamentalDivider className="couple-divider my-4 sm:my-5" />
+
+              <div>
+                <h1 className="couple-name couple-name-gold">
+                  <span className="couple-name-initial">{COUPLE.groom.charAt(0)}</span>
+                  {COUPLE.groom.slice(1)}
+                </h1>
+                <p className="font-body text-xs text-text-primary/85 sm:text-sm mt-1">
+                  {COUPLE.groomParents}
+                </p>
+                <p className="font-body text-[0.72rem] text-text-secondary sm:text-xs">
+                  {COUPLE.groomResidence}
+                </p>
+              </div>
             </div>
           </FadeIn>
 
@@ -82,9 +99,12 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.55} duration={1}>
-            <div className="mt-8 sm:mt-10 space-y-1">
+            <div className="mt-7 sm:mt-9 space-y-1">
               <p className="font-heading text-lg font-medium text-text-primary sm:text-2xl">
                 {EVENT.date}
+              </p>
+              <p className="font-heading text-base font-semibold text-gold-deep sm:text-xl">
+                {EVENT.venue}
               </p>
             </div>
           </FadeIn>
@@ -92,9 +112,9 @@ export default function Hero() {
           <FadeIn delay={0.7} duration={1}>
             <div className="mt-5 sm:mt-6">
               <p className="font-body text-[0.65rem] tracking-[0.18em] uppercase text-text-secondary sm:tracking-[0.28em]">
-                {HERO.ceremony}
+                {HERO.ceremony} & Reception
               </p>
-              <p className="mt-2 font-heading text-2xl text-gold sm:mt-3 sm:text-4xl">
+              <p className="mt-1 font-heading text-2xl text-gold sm:mt-2 sm:text-3xl">
                 {EVENT.nikahTime}
               </p>
             </div>

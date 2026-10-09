@@ -35,8 +35,23 @@ export default function MusicToggle() {
     audio.addEventListener("ended", onEnded);
     audio.addEventListener("error", onError);
 
+    const handleAutoPlay = async () => {
+      if (audio.paused) {
+        try {
+          await audio.play();
+          sessionStorage.setItem(STORAGE_KEY, "true");
+          setHasError(false);
+        } catch {
+          // Browser prevented autoplay
+        }
+      }
+    };
+
+    window.addEventListener("nikah-start-audio", handleAutoPlay);
+
     return () => {
       audio.pause();
+      window.removeEventListener("nikah-start-audio", handleAutoPlay);
       audio.removeEventListener("play", onPlay);
       audio.removeEventListener("pause", onPause);
       audio.removeEventListener("ended", onEnded);
